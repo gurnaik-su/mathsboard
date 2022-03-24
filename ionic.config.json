@@ -1,0 +1,7 @@
+{
+  "name": "MathsBoard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

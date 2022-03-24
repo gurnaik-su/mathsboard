@@ -1,0 +1,105 @@
+<ion-content color="primary">    
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col class="card-holder" size="7">
+        <ion-card class="info-card">
+          <ion-row>
+            <ion-col size="3">
+              <ion-img class="logo-img" src="/assets/images/Logo.png"></ion-img>
+            </ion-col>
+            <ion-col size="9">
+              <ion-img class="logotext-img" src="/assets/images/Logotext.png"></ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <div class="info-card-intro ion-text-center">
+              Welcome to Maths Board! The independent maths learning platform for KS2 students.
+            </div>
+          </ion-row>
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <div class="info-card-text ion-text-center">
+              Maths Board aims to give students a means to learn KS2 mathematics at their own pace. This could mean re-capping content from class, or learning ahead of time. Maths Board is the perfect start for a young students introduction to online learning!
+            </div>
+          </ion-row>
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <div routerLink="/login" class="info-sign-up ion-text-center">
+              <u>Back to Login</u>
+            </div>
+          </ion-row>
+      </ion-card>
+
+      </ion-col>
+      <ion-col class="card-holder" size="5">
+        <ion-card class="login-card">
+        <ion-row class="ion-justify-content-center">
+          <ion-col>
+            <ion-img class="logo-img-small" src="/assets/images/Logo.png"></ion-img>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <div class="login-header ion-text-center">
+            <b>Create an account</b>
+          </div>
+        </ion-row>
+        <form>
+ 
+        <ion-row>
+          <ion-col>
+            <ion-card class="input-username">
+            <ion-item class="input-label">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input  type="text" #email required>
+            </ion-input>
+          </ion-item>
+          
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card class="input-password">
+            <ion-item class="input-label">
+            <ion-label position="floating">Username</ion-label>
+            <ion-input  type="text" #username required>
+            </ion-input>
+          </ion-item>
+          
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card class="input-password">
+            <ion-item class="input-label">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input  type="password" #password required>
+            </ion-input>
+          </ion-item>
+          
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card class="input-password">
+            <ion-item class="input-label">
+            <ion-label position="floating">Re-enter Password</ion-label>
+            <ion-input  type="password" #passwordtwo required>
+            </ion-input>
+          </ion-item>
+          
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" (click)="signUp(email, password, passwordtwo, username)" class="login-button" expand="block">Create Account</ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
+
+      </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

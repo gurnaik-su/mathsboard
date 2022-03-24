@@ -1,0 +1,31 @@
+<ion-content color="primary">
+<ion-card class="info-card">
+  <ion-row>
+    <ion-col size="3">
+      <ion-img class="logo-img" src="/assets/images/Logo.png"></ion-img>
+    </ion-col>
+    <ion-col size="9">
+      <ion-img class="logotext-img" src="/assets/images/Logotext.png"></ion-img>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-margin-top">
+    <div class="info-card-intro ion-text-center">
+      Please check your email and click on the link to verfiy your email address.
+    </div>
+    <div class="info-card-intro ion-text-center">
+      Check your spam email
+    </div>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button type="submit" (click)="authService.SendVerificationMail()" class="login-button" expand="block">Re-send Email</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <div routerLink="/login" class="info-sign-up ion-text-center">
+      <u>Back to Login</u>
+    </div>
+  </ion-row>
+  
+</ion-card>
+</ion-content>
