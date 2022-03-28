@@ -43,9 +43,50 @@
     height:10%;
     margin-top:2%;
 }
+.badges{
+    width:50%;
+}
+.badge-row{
+    margin-left: 15%;
+}
 .profile-name{
     margin-top:1%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     color: #324068;
+}
+.xp-bar{
+    width: 60%;
+    margin-top: 1%;
+    height: 10px;
+}
+.xp-needed{
+    margin-top: 1%;
+}
+.input-username{
+    border-color: black;
+    border-radius: 3px;
+    border-width: 3px;
+    box-shadow: 2px gray;
+}
+.username{
+    margin-left:5%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: #324068;
+}
+.edit-button{
+    margin-top:10%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    color: #F5A732;
+}
+.logout-button{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    color: #F5A732;
+}
+
+.padding-top{
+ margin-top:5%;
 }

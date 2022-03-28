@@ -48,7 +48,7 @@
     </ion-row>
     <ion-row>
       <div class="title-name">
-      <b>Gurnaik Uppal</b>
+      <b>{{name}}</b>
     </div>
     </ion-row>
 
@@ -56,14 +56,110 @@
 
   <ion-card class="profile-card">
     <ion-row class="ion-justify-content-center">
-      <ion-img class="profile-img" src="/assets/images/redBadge.png"></ion-img>
+      <ion-img class="profile-img" src={{photo}}></ion-img>
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <div class="profile-name">
-        <b>Gurnaik Uppal</b>
+        <b>{{name}}</b>
       </div>
     </ion-row>
-    <ion-row>
+    <ion-row class="ion-justify-content-center">
+      <div>
+        Level {{level}}
+      </div>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-progress-bar class="xp-bar" value={{progress}}></ion-progress-bar>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <div class="xp-needed">
+        {{xpNeeded}}XP Needed
+      </div>
+    </ion-row>
+    <ion-row class="padding-top">
+      <ion-col>
+        <ion-row>
+          <ion-col size="9">
+            <ion-item class="username">
+              <ion-label position="stacked">Username</ion-label>
+            <ion-row>
+              <div>
+                {{name}}
+              </div>
+            </ion-row>
+          </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="editUsername()" class="edit-button">
+              Edit
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="9">
+            <ion-item class="username">
+              <ion-label position="stacked">E-Mail</ion-label>
+            <ion-row>
+              <div>
+                {{email}}
+              </div>
+            </ion-row>
+          </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-button (click)="editEmail()" class="edit-button">
+              Edit
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="username"> 
+          <ion-col>
+            <ion-button (click)="editPass()" class="edit-button">
+              Change Password
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button class="edit-button">
+              Delete Account
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col>
+        <ion-row class="ion-justify-content-center">
+          <div class="profile-name">
+          <b>Badges Earned</b>
+        </div>
+        </ion-row>
+        <ion-row class="ion-justify-content-center badge-row">
+          <ion-col>
+            <ion-img  class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center badge-row">
+          <ion-col>
+            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+          <ion-col>
+            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-button type="submit" class="logout-button" (click)="authService.SignOut()" expand="block">Logout</ion-button>
+    </ion-row>
+
+    
       
   </ion-card>
 </ion-content>
