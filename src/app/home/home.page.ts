@@ -17,16 +17,15 @@ export class HomePage implements OnInit {
   profileName: string;
   profilePoints: number;
   photo: string;
+  name: string;
 
   constructor(public authService: AuthenticationService, private firestore: AngularFirestore) { }
 
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
-      user.updateProfile({
-        photoURL: "/assets/images/redBadge.png"
-      })
       this.photo = user.photoURL;
+      this.name = user.displayName
 
       console.log("AUTH_USER",user)
       console.log(user.displayName)

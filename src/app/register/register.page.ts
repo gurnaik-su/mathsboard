@@ -8,6 +8,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/firestore';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import { AlertController } from '@ionic/angular';
 
 
 
@@ -24,7 +25,7 @@ export class RegisterPage implements OnInit {
 
   
 
-  constructor(public authService: AuthenticationService, public router: Router, private firestore: AngularFirestore) { }
+  constructor(public authService: AuthenticationService, public router: Router, private firestore: AngularFirestore,public alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -33,7 +34,7 @@ export class RegisterPage implements OnInit {
 
   
   
-  signUp(email, password, passwordtwo, username){
+  async signUp(email, password, passwordtwo, username){
     console.log("password =" + password.value)
     console.log("password =" + passwordtwo.value)
     if(password.value == passwordtwo.value){
@@ -64,11 +65,29 @@ export class RegisterPage implements OnInit {
       this.router.navigate(['verify-email']);
       
        
-    }).catch((error) => {
-      window.alert(error)
+    }).catch(async (error) => {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: error.message,
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      alert.present();
     })
 }else{
-  window.alert("Passwords dont match!")
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Passwords dont match!',
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  alert.present();
 }
 }
 

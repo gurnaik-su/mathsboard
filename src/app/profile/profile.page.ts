@@ -29,12 +29,14 @@ export class ProfilePage implements OnInit {
       this.photo = user.photoURL
       this.name = user.displayName
       this.email = user.email
+      console.log(user)
 
       if(user){
         const result = this.firestore.doc(`/users/${user.uid}`);
         var userprofile = result.valueChanges();
         userprofile.subscribe( profile =>{
           console.log("PROFILE::", profile);
+          profile['name'] = user.displayName
           this.profilePoints = profile['points']
           this.level = Math.trunc(this.profilePoints / 50)
           this.xpNeeded = 50 - Math.trunc(this.profilePoints % 50)
@@ -76,22 +78,19 @@ export class ProfilePage implements OnInit {
                   user.updateProfile({
                     displayName: data.username
                   })
-                  setDoc(doc(this.usersRef,user.uid), {
-                    name: data.username ,
-                    points: this.profilePoints
-                  }).then(() => {
-                    console.log("Successful")})
-                    .catch((error) => {
-                    console.log(`Unsuccessful returned error ${error}`)})
+                  this.firestore.collection('users').doc(`/users/${user.uid}`).update({name:data.username});
                   
+
                 })
-                
+                window.location.reload()
+
               }
             }
           ]
         });
     
         await alert.present();
+        
       }
 
       async editEmail(){
@@ -117,7 +116,20 @@ export class ProfilePage implements OnInit {
               text: 'Ok',
               handler: data => {
                 firebase.auth().onAuthStateChanged(user => {
-                  user.updateEmail(data.email)
+                  user.updateEmail(data.email).then(() => {
+                    console.log("Successful")})
+                    .catch(async (error) => {
+                    console.log(`Unsuccessful returned error ${error}`)
+                    const alert = await this.alertController.create({
+                      cssClass: 'my-custom-class',
+                      header: error.message,
+                      buttons: [
+                      {
+                          text: 'Ok',
+                        }
+                      ]
+                    })
+                    alert.present();})
                   
                 })
                 
@@ -128,6 +140,125 @@ export class ProfilePage implements OnInit {
 
         await alert.present();
     }
+
+    redBadge(){
+      firebase.auth().onAuthStateChanged(user => {
+        user.updateProfile({
+          photoURL: "/assets/images/redBadge.png"
+        })
+      })
+      window.location.reload()
+    }
+
+    async blueBadge(){
+      if(this.level >= 2){
+      firebase.auth().onAuthStateChanged(user => {
+        user.updateProfile({
+          photoURL: "/assets/images/blueCircle.png"
+        })
+      })
+      window.location.reload()
+    }
+    else{
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Level Required : 2',
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      alert.present();
+    }
+  }
+  async lightGreenBadge(){
+    if(this.level >= 4){
+    firebase.auth().onAuthStateChanged(user => {
+      user.updateProfile({
+        photoURL: "/assets/images/green1Circle.png"
+      })
+    })
+    window.location.reload()
+  }else{
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Level Required : 4',
+      buttons: [
+      {
+          text: 'Ok',
+        }
+      ]
+    })
+    alert.present();
+  }
+} 
+  async orangeBadge(){
+  if(this.level >= 6){
+  firebase.auth().onAuthStateChanged(user => {
+    user.updateProfile({
+      photoURL: "/assets/images/orangeCircle.png"
+    })
+  })
+  window.location.reload()
+}
+else{
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Level Required : 6',
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  alert.present();
+}
+}
+  async purpleBadge(){
+  if(this.level >= 8){
+  firebase.auth().onAuthStateChanged(user => {
+    user.updateProfile({
+      photoURL: "/assets/images/purpcirc.png"
+    })
+  })
+  window.location.reload()
+}
+else{
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Level Required : 8',
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  alert.present();
+}
+}
+  async pinkBadge(){
+  if(this.level >= 10){
+  firebase.auth().onAuthStateChanged(user => {
+    user.updateProfile({
+      photoURL: "/assets/images/pinkCircle.png"
+    })
+  })
+  window.location.reload()
+}
+else{
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: 'Level Required : 10',
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  alert.present();
+}
+}
   }
 
 

@@ -131,26 +131,31 @@
           <b>Badges Earned</b>
         </div>
         </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <div class="profile-name">
+          Click to change display picture
+        </div>
+        </ion-row>
         <ion-row class="ion-justify-content-center badge-row">
           <ion-col>
-            <ion-img  class="badges" src="/assets/images/redBadge.png"></ion-img>
+            <ion-img  class="badges" (click)="redBadge()" src="/assets/images/redBadge.png"></ion-img>
           </ion-col>
           <ion-col>
-            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+              <ion-img  class="badges" (click)="blueBadge()" src="/assets/images/blueCircle.png"></ion-img>
           </ion-col>
           <ion-col>
-            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+            <ion-img class="badges" (click)="lightGreenBadge()" src="/assets/images/green1Circle.png"></ion-img>
           </ion-col>
         </ion-row>
         <ion-row class="ion-justify-content-center badge-row">
           <ion-col>
-            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+            <ion-img class="badges" (click)="orangeBadge()" src="/assets/images/orangeCircle.png"></ion-img>
           </ion-col>
           <ion-col>
-            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+            <ion-img class="badges" (click)="purpleBadge()" src="/assets/images/purpcirc.png"></ion-img>
           </ion-col>
           <ion-col>
-            <ion-img class="badges" src="/assets/images/redBadge.png"></ion-img>
+            <ion-img class="badges" (click)="pinkBadge()" src="/assets/images/pinkCircle.png"></ion-img>
           </ion-col>
         </ion-row>
       </ion-col>

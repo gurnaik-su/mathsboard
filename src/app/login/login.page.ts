@@ -21,12 +21,18 @@ export class LoginPage {
       .then((res) => {
         if(this.authService.isEmailVerified) {
           this.router.navigate(['home']);          
-        } else {
-          window.alert('Email is not verified')
-          return false;
         }
-      }).catch((error) => {
-        window.alert(error.message)
+      }).catch(async (error) => {
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          header: error.message,
+          buttons: [
+          {
+              text: 'Ok',
+            }
+          ]
+        })
+        alert.present();
       })
   }
   goToRegister(){

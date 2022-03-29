@@ -3,6 +3,7 @@ import { User } from "./user";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import { AlertController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +13,8 @@ export class AuthenticationService {
     public afStore: AngularFirestore,
     public ngFireAuth: AngularFireAuth,
     public router: Router,  
-    public ngZone: NgZone 
+    public ngZone: NgZone,
+    public alertController: AlertController
   ) {
     this.ngFireAuth.authState.subscribe(user => {
       if (user) {
@@ -45,10 +47,28 @@ export class AuthenticationService {
   // Recover password
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth.sendPasswordResetEmail(passwordResetEmail)
-    .then(() => {
-      window.alert('Password reset email has been sent, please check your inbox.');
-    }).catch((error) => {
-      window.alert(error)
+    .then(async () => {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Password reset email has been sent, please check your inbox and your junk',
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      alert.present();
+    }).catch(async (error) => {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: error.message,
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      alert.present();
     })
   }
   // Returns true when user is looged in
@@ -70,8 +90,17 @@ export class AuthenticationService {
           this.router.navigate(['dashboard']);
         })
       this.SetUserData(result.user);
-    }).catch((error) => {
-      window.alert(error)
+    }).catch(async (error) => {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: error.message,
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      alert.present();
     })
   }
   // Store user in localStorage
