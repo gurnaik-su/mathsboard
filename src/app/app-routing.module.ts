@@ -34,6 +34,18 @@ const routes: Routes = [
   {
     path: 'year3',
     loadChildren: () => import('./year3/year3.module').then( m => m.Year3PageModule)
+  },
+  {
+    path: 'year4',
+    loadChildren: () => import('./year4/year4.module').then( m => m.Year4PageModule)
+  },
+  {
+    path: 'year5',
+    loadChildren: () => import('./year5/year5.module').then( m => m.Year5PageModule)
+  },
+  {
+    path: 'year6',
+    loadChildren: () => import('./year6/year6.module').then( m => m.Year6PageModule)
   }
 ];
 
