@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'year3',
+    loadChildren: () => import('./year3/year3.module').then( m => m.Year3PageModule)
   }
 ];
 
