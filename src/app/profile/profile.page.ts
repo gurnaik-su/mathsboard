@@ -55,7 +55,7 @@ export class ProfilePage implements OnInit {
       async editUsername() {
         const alert = await this.alertController.create({
           cssClass: 'my-custom-class',
-          header: 'Enter New Username',
+          header: 'Enter New Username (Name will change on reload)',
           inputs: [
             {
               name: 'username',
@@ -78,11 +78,11 @@ export class ProfilePage implements OnInit {
                   user.updateProfile({
                     displayName: data.username
                   })
-                  this.firestore.collection('users').doc(`/users/${user.uid}`).update({name:data.username});
+                  // this.firestore.collection('users').doc(`/users/${user.uid}`).update({name:data.username});
                   
 
                 })
-                window.location.reload()
+                 
 
               }
             }
@@ -141,13 +141,22 @@ export class ProfilePage implements OnInit {
         await alert.present();
     }
 
-    redBadge(){
+    async redBadge(){
       firebase.auth().onAuthStateChanged(user => {
         user.updateProfile({
           photoURL: "/assets/images/redBadge.png"
         })
       })
-      window.location.reload()
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "Reload page for new badge",
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
     }
 
     async blueBadge(){
@@ -157,7 +166,16 @@ export class ProfilePage implements OnInit {
           photoURL: "/assets/images/blueCircle.png"
         })
       })
-      window.location.reload()
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "Reload page for new badge",
+        buttons: [
+        {
+            text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
     }
     else{
       const alert = await this.alertController.create({
@@ -179,7 +197,16 @@ export class ProfilePage implements OnInit {
         photoURL: "/assets/images/green1Circle.png"
       })
     })
-    window.location.reload()
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: "Reload page for new badge",
+      buttons: [
+      {
+          text: 'Ok',
+        }
+      ]
+    })
+    await alert.present();
   }else{
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -200,7 +227,16 @@ export class ProfilePage implements OnInit {
       photoURL: "/assets/images/orangeCircle.png"
     })
   })
-  window.location.reload()
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: "Reload page for new badge",
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  await alert.present();
 }
 else{
   const alert = await this.alertController.create({
@@ -222,7 +258,16 @@ else{
       photoURL: "/assets/images/purpcirc.png"
     })
   })
-  window.location.reload()
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: "Reload page for new badge",
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  await alert.present();
 }
 else{
   const alert = await this.alertController.create({
@@ -244,7 +289,16 @@ else{
       photoURL: "/assets/images/pinkCircle.png"
     })
   })
-  window.location.reload()
+  const alert = await this.alertController.create({
+    cssClass: 'my-custom-class',
+    header: "Reload page for new badge",
+    buttons: [
+    {
+        text: 'Ok',
+      }
+    ]
+  })
+  await alert.present();
 }
 else{
   const alert = await this.alertController.create({

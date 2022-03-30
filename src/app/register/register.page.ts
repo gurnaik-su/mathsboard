@@ -44,7 +44,8 @@ export class RegisterPage implements OnInit {
     this.authService.RegisterUser(email.value, password.value)      
     .then(   (res) => {
       res.user.updateProfile({
-        displayName: username.value
+        displayName: username.value,
+        photoURL: "/assets/images/redBadge.png"
       })
       this.authService.SendVerificationMail()
       console.log(res.user)

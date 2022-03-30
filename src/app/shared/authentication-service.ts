@@ -71,7 +71,7 @@ export class AuthenticationService {
       alert.present();
     })
   }
-  // Returns true when user is looged in
+  // Returns true when user is logged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null && user.emailVerified !== false) ? true : false;
@@ -79,6 +79,7 @@ export class AuthenticationService {
   // Returns true when user's email is verified
   get isEmailVerified(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.emailVerified)
     return (user.emailVerified !== false) ? true : false;
   }
   
@@ -87,7 +88,7 @@ export class AuthenticationService {
     return this.ngFireAuth.signInWithPopup(provider)
     .then((result) => {
        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['home']);
         })
       this.SetUserData(result.user);
     }).catch(async (error) => {

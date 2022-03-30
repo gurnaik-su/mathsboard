@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../shared/authentication-service";
 import { AlertController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/firestore';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
@@ -12,17 +15,44 @@ export class LoginPage {
   constructor(
     public authService: AuthenticationService,
     public router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private firestore: AngularFirestore
   ) {}
-
+  
   ngOnInit() {}
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
-      .then((res) => {
-        if(this.authService.isEmailVerified) {
-          this.router.navigate(['home']);          
+      .then((res) => {    
+
+        firebase.auth().onAuthStateChanged(async user => {
+          
+    
+          if(user.emailVerified == true){
+            this.router.navigate(['home'])
+           }
+           else{
+             console.log("email not verified")
+             const alert = await this.alertController.create({
+              cssClass: 'my-custom-class',
+              header: "Email not verified",
+              buttons: [
+              {
+                  text: 'Ok',
+                }
+              ]
+            })
+            await alert.present();
+           }
         }
+    
+        
+        )
+
+        // if(this.authService.isEmailVerified) {
+        //   this.router.navigate(['home']);          
+        // }
       }).catch(async (error) => {
+        console.log(error)
         const alert = await this.alertController.create({
           cssClass: 'my-custom-class',
           header: error.message,
@@ -32,7 +62,7 @@ export class LoginPage {
             }
           ]
         })
-        alert.present();
+        await alert.present();
       })
   }
   goToRegister(){
