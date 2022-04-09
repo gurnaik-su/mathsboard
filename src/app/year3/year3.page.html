@@ -48,7 +48,7 @@
     </ion-row>
     <ion-row>
       <div class="title-name">
-        <b>gurnaik uppal</b>
+        <b>{{name}}</b>
       </div>
     </ion-row>
   </ion-card>
@@ -72,13 +72,13 @@
           <div class="progress-label">
             <i>Number and Place Value</i>
           </div>
-          <ion-progress-bar class="summary-bar" value="0.5"></ion-progress-bar>
+          <ion-progress-bar class="summary-bar" value={{numberProgress}}></ion-progress-bar>
         </ion-row>
         <ion-row>
           <div class="progress-label">
             <i>Addition and Subtraction</i>
           </div>
-          <ion-progress-bar class="summary-bar" value="0.3"></ion-progress-bar>
+          <ion-progress-bar class="summary-bar" value={{additionProgress}}></ion-progress-bar>
         </ion-row>
         <ion-row>
           <div class="progress-label">
@@ -120,11 +120,11 @@
                 <ion-col>
                   <ion-row>
                     <div class="progress-value">
-                      <i>4/10 Points</i>
+                      <i>{{year3NumberPoints}}/20 Points</i>
                     </div>
                   </ion-row>
                   <ion-row>
-                    <ion-progress-bar class="card-progress" value="0.4"></ion-progress-bar>
+                    <ion-progress-bar class="card-progress" value={{numberProgress}}></ion-progress-bar>
                   </ion-row>
                 </ion-col>
               </ion-item>
@@ -158,12 +158,344 @@
               </ion-col>
             </ion-row>
             <ion-row class="main-row">
-              <ion-button class="tutorial-button">
+              <ion-button id="year3-number-place" class="tutorial-button">
                 <b>Tutorial</b>
               </ion-button>
-              <ion-button class="quiz-button">
+              <!-- Number and Place Value Tutorial  -->
+              <ion-popover id="css" trigger="year3-number-place">
+                <ng-template>
+                  <ion-content>
+                    <swiper [pagination]="true">
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Counting Multiples</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-countingmultiples.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>3 Digit Place Value</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-3digitplacevalue.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Order Up To 1000</h1>
+                          <ion-img class="slide-img3" src="/assets/images/year3-orderto1000.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Write Up To 1000</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-writeto1000.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+              <ion-button id="year3-number-place-quiz" class="quiz-button">
                 <b>Quiz</b>
               </ion-button>
+              <!-- Number and Place Value Quiz -->
+              <ion-popover [backdropDismiss]="false" id="css" trigger="year3-number-place-quiz">
+                <ng-template>
+                  <ion-content>
+                    <swiper #slides [pagination]="true" [allowTouchMove]="false">
+                      <!-- Question One -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question One</h1>
+                          <div class="quiz-text">
+                            <b>ONLY select multiples of 8</b>
+                          </div>
+                          <div class="quiz-text">
+                            In each dropdown select a multiple of 8,
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-item class="quiz-text">
+                                <ion-label>Set 1</ion-label>
+                                <ion-select [(ngModel)]="number11" interface="popover">
+                                  <ion-select-option value="12">12</ion-select-option>
+                                  <ion-select-option value="8">8</ion-select-option>
+                                  <ion-select-option value="14">14</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                              <ion-item class="quiz-text">
+                                <ion-label>Set 2</ion-label>
+                                <ion-select [(ngModel)]="number12" interface="popover">
+                                  <ion-select-option value="72">72</ion-select-option>
+                                  <ion-select-option value="70">70</ion-select-option>
+                                  <ion-select-option value="76">76</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                              <ion-item class="quiz-text">
+                                <ion-label>Set 3</ion-label>
+                                <ion-select [(ngModel)]="number13" interface="popover">
+                                  <ion-select-option value="88">88</ion-select-option>
+                                  <ion-select-option value="86">86</ion-select-option>
+                                  <ion-select-option value="84">84</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                              <ion-item class="quiz-text">
+                                <ion-label>Set 4</ion-label>
+                                <ion-select [(ngModel)]="number14" interface="popover">
+                                  <ion-select-option value="22">22</ion-select-option>
+                                  <ion-select-option value="120">120</ion-select-option>
+                                  <ion-select-option value="67">67</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                              <ion-item class="quiz-text">
+                                <ion-label>Set 5</ion-label>
+                                <ion-select [(ngModel)]="number15" interface="popover">
+                                  <ion-select-option value="18">18</ion-select-option>
+                                  <ion-select-option value="96">96</ion-select-option>
+                                  <ion-select-option value="33">33</ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                            </ion-col>
+                            <ion-col size="3">
+                            </ion-col>
+                          </ion-row>
+                          <ion-row class="ion-justify-content-center ion-padding-top">
+                            <ion-button (click)="nextSlide()" class="next-button-small-margin">
+                              Next Question
+                            </ion-button>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Two -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Two</h1>
+                          <div class="quiz-text">
+                            <b>Enter the place value of the <span style="color:#FF0000">RED</span> digit in numbers</b>
+                          </div>
+                          <div class="quiz-text">
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    6<span style="color:#FF0000">7</span>8
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="number21" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    <span style="color:#FF0000">2</span>29
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="number22" type="number" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    43<span style="color:#FF0000">8</span>
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="number23" type="number" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    3<span style="color:#FF0000">2</span>6
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="number24" type="number" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    1<span style="color:#FF0000">7</span>2
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="number25" type="number" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button-small-margin">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button (click)="nextSlide()" class="next-button-small-margin">
+                                    Next Question
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Three -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Three</h1>
+                          <div class="quiz-text">
+                            <b>Order the values from LOWEST to HIGHEST</b>
+                          </div>
+                          <div class="quiz-text">
+                            Drag and Drop the icon to re-order
+                          </div>
+                          <ion-row>
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-list>
+                                <ion-reorder-group (ionItemReorder)="onRenderItems($event)" disabled="false">
+                                  <ion-item class="quiz-drag" *ngFor="let item of listItems">
+                                    <ion-reorder slot="start"></ion-reorder>
+                                    <ion-label>
+                                      {{item}}
+                                    </ion-label>
+                                  </ion-item>
+                                </ion-reorder-group>
+                              </ion-list>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button (click)="nextSlide()" class="next-button">
+                                    Next Question
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3">
+                            </ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Four -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Four</h1>
+                          <div class="quiz-text">
+                            <b>Type the shown numbers in WORDS</b>
+                          </div>
+                          <div class="quiz-text">
+                            Please follow the format ____ ____ and ____-____
+                          </div>
+                          <div class="quiz-text">
+                            E.g one hundred and thirty-two or fourty-seven
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    384
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Value in Words</ion-label>
+                                    <ion-input [(ngModel)]="number41" type="text" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    39
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Value in Words</ion-label>
+                                    <ion-input [(ngModel)]="number42" type="text" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    583
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Value in Words</ion-label>
+                                    <ion-input [(ngModel)]="number43" type="text" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    294
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Value in Words</ion-label>
+                                    <ion-input [(ngModel)]="number44" type="text" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button-small-margin">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button type="submit"
+                                    (click)="submitNumberAnswers(number11, number12, number13, number14, number15, number21, number22, number23, number24, number25, number41, number42, number43, number44)"
+                                    class="next-button-small-margin">
+                                    Submit Answers
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
             </ion-row>
           </ion-card>
         </ion-row>
@@ -180,11 +512,11 @@
                 <ion-col>
                   <ion-row>
                     <div class="progress-value">
-                      <i>7/10 Points</i>
+                      <i>{{year3AdditionPoints}}/15 Points</i>
                     </div>
                   </ion-row>
                   <ion-row>
-                    <ion-progress-bar class="card-progress" value="0.7"></ion-progress-bar>
+                    <ion-progress-bar class="card-progress" value={{additionProgress}}></ion-progress-bar>
                   </ion-row>
                 </ion-col>
               </ion-item>
@@ -213,12 +545,346 @@
               </ion-col>
             </ion-row>
             <ion-row class="main-row">
-              <ion-button class="tutorial-button">
+              <ion-button id="year3-addition-subtraction" class="tutorial-button">
                 <b>Tutorial</b>
               </ion-button>
-              <ion-button class="quiz-button">
+              <!-- Addition and Subtraction Tutorial  -->
+              <ion-popover id="css" trigger="year3-addition-subtraction">
+                <ng-template>
+                  <ion-content>
+                    <swiper [pagination]="true">
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Columnar Addition</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-addition.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Columnar Subraction</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-subtraction.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Inverse Operations</h1>
+                          <ion-img class="slide-img3" src="/assets/images/year3-inverse.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+              <ion-button id="addition-subtraction-quiz" class="quiz-button">
                 <b>Quiz</b>
               </ion-button>
+              <!-- Addition and Subtraction Quiz -->
+              <ion-popover [backdropDismiss]="false" id="css" trigger="addition-subtraction-quiz">
+                <ng-template>
+                  <ion-content>
+                    <swiper #slides [pagination]="true" [allowTouchMove]="false">
+                      <!-- Question One -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question One</h1>
+                          <div class="quiz-text">
+                            <b>Use columnar addition to calculate answers</b>
+                          </div>
+                          <div class="quiz-text">
+                            Grab some paper and a pen for your workings!
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    49 + 80 =
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Answer</ion-label>
+                                    <ion-input [(ngModel)]="addition11" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    192 + 429 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition12" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    329 + 89 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition13" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    482 + 399 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition14" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    501 + 197 =
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition15" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                  <ion-button (click)="nextSlide()" class="next-button-small-margin">
+                                    Next Question
+                                  </ion-button>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Two -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Two</h1>
+                          <div class="quiz-text">
+                            <b>Use columnar subtraction to calculate answers</b>
+                          </div>
+                          <div class="quiz-text">
+                            Grab some paper and a pen for your workings!
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    70 - 29 =
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Answer</ion-label>
+                                    <ion-input [(ngModel)]="addition21" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    429 - 192 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition22" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    329 - 89 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition23" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    482 - 399 = 
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition24" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    501 - 197 =
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item>
+                                    <ion-label position="floating">Place Value</ion-label>
+                                    <ion-input [(ngModel)]="addition25" required></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button (click)="nextSlide()" class="next-button">
+                                    Next Question
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Three -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Three</h1>
+                          <div class="quiz-text">
+                            <b>Use inverse operations to check if answers are TRUE or FASLE</b>
+                          </div>
+                          <div class="quiz-text">
+                            Grab some paper and a pen for your workings!
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    42 + 85 = 127
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 1</ion-label>
+                                    <ion-select [(ngModel)]="addition31" interface="popover">
+                                      <ion-select-option value="TRUE">TRUE</ion-select-option>
+                                      <ion-select-option value="FALSE">FALSE</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    964 - 742 = 218
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 2</ion-label>
+                                    <ion-select [(ngModel)]="addition32" interface="popover">
+                                      <ion-select-option value="TRUE">TRUE</ion-select-option>
+                                      <ion-select-option value="FALSE">FALSE</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    582 + 395 = 965
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 3</ion-label>
+                                    <ion-select [(ngModel)]="addition33" interface="popover">
+                                      <ion-select-option value="TRUE">TRUE</ion-select-option>
+                                      <ion-select-option value="FALSE">FALSE</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    482 - 399 = 83
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 4</ion-label>
+                                    <ion-select [(ngModel)]="addition34" interface="popover">
+                                      <ion-select-option value="TRUE">TRUE</ion-select-option>
+                                      <ion-select-option value="FALSE">FALSE</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row>
+                                <ion-col>
+                                  <div class="quiz-numbers">
+                                    543 + 213 = 756
+                                  </div>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 5</ion-label>
+                                    <ion-select [(ngModel)]="addition35" interface="popover">
+                                      <ion-select-option value="TRUE">TRUE</ion-select-option>
+                                      <ion-select-option value="FALSE">FALSE</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button-small-margin">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button type="submit"
+                                    (click)="submitAdditionAnswers(addition11, addition12, addition13, addition14, addition15, addition21, addition22, addition23, addition24, addition25, addition31, addition32, addition33, addition34, addition35)"
+                                    class="next-button-small-margin">
+                                    Submit Answers
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
             </ion-row>
           </ion-card>
         </ion-row>
@@ -284,7 +950,7 @@
               <ion-item class="progress-item">
                 <ion-col>
                   <ion-label class="progress-title">
-                    <b></b>
+                    <b>Fractions</b>
                   </ion-label>
                 </ion-col>
                 <ion-col>

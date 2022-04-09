@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SwiperModule } from 'swiper/angular';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,7 +14,8 @@ import { Year3Page } from './year3.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    Year3PageRoutingModule
+    Year3PageRoutingModule,
+    SwiperModule
   ],
   declarations: [Year3Page]
 })
