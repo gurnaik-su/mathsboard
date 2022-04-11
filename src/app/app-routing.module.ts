@@ -21,7 +21,8 @@ const routes: Routes = [
   },
   { path: 'login', 
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule),
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHome }
+    
+    // canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectLoggedInToHome }
   },
   { 
     path: 'home',
@@ -29,23 +30,28 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
   {
     path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'year3',
-    loadChildren: () => import('./year3/year3.module').then( m => m.Year3PageModule)
+    loadChildren: () => import('./year3/year3.module').then( m => m.Year3PageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'year4',
-    loadChildren: () => import('./year4/year4.module').then( m => m.Year4PageModule)
+    loadChildren: () => import('./year4/year4.module').then( m => m.Year4PageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'year5',
-    loadChildren: () => import('./year5/year5.module').then( m => m.Year5PageModule)
+    loadChildren: () => import('./year5/year5.module').then( m => m.Year5PageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'year6',
-    loadChildren: () => import('./year6/year6.module').then( m => m.Year6PageModule)
+    loadChildren: () => import('./year6/year6.module').then( m => m.Year6PageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   }
 ];
 

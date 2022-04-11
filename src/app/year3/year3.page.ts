@@ -25,11 +25,20 @@ export class Year3Page implements OnInit {
   profilePoints: number;
   numberProgress: number;
   additionProgress: number;
+  multiplyProgress: number;
+  fractionProgress: number;
   year3NumberPoints: number;
-  year3AdditionPoints:number;
+  year3AdditionPoints: number;
+  year3MultiplyPoints: number;
+  year3FractionPoints: number;
+  number11: string;number12: string;number13: string;number14: string;number15: string;number21: string;number22: string;number23: string;number24: string;number25: string;number41: string;number42: string;number43: string;number44: string;
+  fraction11: string;fraction12: string;fraction21: string;fraction22: string;fraction23: string;fraction24: string;fraction25: string;fraction31: string;fraction32: string;fraction33: string;fraction34: string;fraction35: string;
+  addition11: string; addition12: string; addition13: string; addition14: string; addition15: string; addition21: string; addition22: string; addition23: string; addition24: string; addition25: string; addition31: string; addition32: string; addition33: string; addition34: string; addition35: string;
+  multiply11: string; multiply12: string; multiply13: string; multiply14: string; multiply15: string; multiply21: string; multiply22: string; multiply23: string; multiply24: string; multiply25: string; multiply31: string; multiply32: string; multiply33: string; multiply34: string;
   usersRef = collection(db, "users");
   @ViewChild(SwiperComponent) swiper: SwiperComponent;
   listItems: any;
+  fractionlistItems: any;
 
 
   constructor(public authService: AuthenticationService, private firestore: AngularFirestore, public alertController: AlertController, public router: Router,) {
@@ -39,6 +48,13 @@ export class Year3Page implements OnInit {
       "834",
       "1000",
       "429"
+    ];
+    this.fractionlistItems = [
+      "12/20",
+      "15/20",
+      "6/20",
+      "19/20",
+      "3/20"
     ];
 
   }
@@ -61,6 +77,10 @@ export class Year3Page implements OnInit {
           this.numberProgress = profile['Year3-Number'] / 20
           this.year3AdditionPoints = profile['Year3-Addition']
           this.additionProgress = profile['Year3-Addition'] / 15
+          this.year3MultiplyPoints = profile['Year3-Multiply']
+          this.multiplyProgress = profile['Year3-Multiply'] / 14
+          this.year3FractionPoints = profile['Year3-Fraction']
+          this.fractionProgress = profile['Year3-Fraction'] / 17
         })
       }
     }
@@ -72,13 +92,19 @@ export class Year3Page implements OnInit {
   prevSlide() {
     this.swiper.swiperRef.slidePrev();
   }
-  onRenderItems(event) {
+  onRenderlistItems(event) {
     console.log(`Moving item from ${event.detail.from} to ${event.detail.to}`);
     let draggedItem = this.listItems.splice(event.detail.from, 1)[0];
     this.listItems.splice(event.detail.to, 0, draggedItem)
     event.detail.complete();
   }
-  submitNumberAnswers(number11, number12, number13, number14, number15, number21, number22, number23, number24, number25, number41, number42, number43, number44) {
+  onRenderfractionItems(event) {
+    console.log(`Moving item from ${event.detail.from} to ${event.detail.to}`);
+    let draggedItem = this.fractionlistItems.splice(event.detail.from, 1)[0];
+    this.fractionlistItems.splice(event.detail.to, 0, draggedItem)
+    event.detail.complete();
+  }
+  submitNumberAnswers(number11: string,number12: string,number13: string,number14: string,number15: string,number21: string,number22: string,number23: string,number24: string,number25: string,number41: string,number42: string,number43: string,number44: string) {
 
     var numberPoints = 0;
     if (number11 == "8") {
@@ -166,7 +192,7 @@ export class Year3Page implements OnInit {
     )
   }
 
-  submitAdditionAnswers(addition11, addition12, addition13, addition14, addition15, addition21, addition22, addition23, addition24, addition25, addition31, addition32, addition33, addition34, addition35) {
+  submitAdditionAnswers(addition11: string, addition12: string, addition13: string, addition14: string, addition15: string, addition21: string, addition22: string, addition23: string, addition24: string, addition25: string, addition31: string, addition32: string, addition33: string, addition34: string, addition35: string) {
 
     var additionPoints = 0;
     if (addition11 == "129") {
@@ -217,7 +243,12 @@ export class Year3Page implements OnInit {
     console.log(this.profilePoints + additionPoints)
     firebase.auth().onAuthStateChanged(async user => {
       var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
-      var tempPoints = this.profilePoints - this.year3AdditionPoints
+      if (this.year3AdditionPoints != null) {
+        var tempPoints = this.profilePoints - this.year3AdditionPoints
+      }
+      else {
+        var tempPoints = this.profilePoints
+      }
       var newPoints = tempPoints + additionPoints;
       console.log(newPoints)
       userDoc.update({ 'Year3-Addition': additionPoints })
@@ -226,6 +257,162 @@ export class Year3Page implements OnInit {
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: "You scored " + additionPoints + "/15",
+        buttons: [
+          {
+            text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
+    }
+    )
+  }
+
+  submitMultiplyAnswers(multiply11: string, multiply12: string, multiply13: string, multiply14: string, multiply15: string, multiply21: string, multiply22: string, multiply23: string, multiply24: string, multiply25: string, multiply31: string, multiply32: string, multiply33: string, multiply34: string) {
+
+    var multiplyPoints = 0;
+    if (multiply11 == "80") {
+      multiplyPoints++
+    }
+    if (multiply12 == "12") {
+      multiplyPoints++
+    }
+    if (multiply13 == "36") {
+      multiplyPoints++
+    }
+    if (multiply14 == "64") {
+      multiplyPoints++
+    }
+    if (multiply15 == "21") {
+      multiplyPoints++
+    }
+    if (multiply21 == "150") {
+      multiplyPoints++
+    }
+    if (multiply22 == "272") {
+      multiplyPoints++
+    }
+    if (multiply23 == "96") {
+      multiplyPoints++
+    }
+    if (multiply24 == "273") {
+      multiplyPoints++
+    }
+    if (multiply25 == "468") {
+      multiplyPoints++
+    }
+    if (multiply31 == "16r2") {
+      multiplyPoints++
+    }
+    if (multiply32 == "4r2") {
+      multiplyPoints++
+    }
+    if (multiply33 == "6") {
+      multiplyPoints++
+    }
+    if (multiply34 == "5r4") {
+      multiplyPoints++
+    }
+    console.log(this.profilePoints + multiplyPoints)
+    firebase.auth().onAuthStateChanged(async user => {
+      var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+      if (this.year3MultiplyPoints != null) {
+        var tempPoints = this.profilePoints - this.year3MultiplyPoints
+      }
+      else {
+        var tempPoints = this.profilePoints
+      }
+      var newPoints = tempPoints + multiplyPoints;
+      console.log(newPoints)
+      userDoc.update({ 'Year3-Multiply': multiplyPoints })
+      userDoc.update({ 'points': newPoints });
+      popoverController.dismiss();
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "You scored " + multiplyPoints + "/14",
+        buttons: [
+          {
+            text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
+    }
+    )
+  }
+
+  submitFractionAnswers(fraction11: string, fraction12: string, fraction21: string, fraction22: string, fraction23: string, fraction24: string, fraction25: string, fraction31: string, fraction32: string, fraction33: string, fraction34: string, fraction35: string) {
+
+    var fractionPoints = 0;
+    if (fraction11 == "3/20") {
+      fractionPoints++
+    }
+    if (fraction12 == "4/5") {
+      fractionPoints++
+    }
+    if (fraction21 == "1/2") {
+      fractionPoints++
+    }
+    if (fraction22 == "3/9") {
+      fractionPoints++
+    }
+    if (fraction23 == "6/24") {
+      fractionPoints++
+    }
+    if (fraction24 == "1/10") {
+      fractionPoints++
+    }
+    if (fraction25 == "2/16") {
+      fractionPoints++
+    }
+    if (fraction31 == "8/10") {
+      fractionPoints++
+    }
+    if (fraction32 == "5/6") {
+      fractionPoints++
+    }
+    if (fraction33 == "11/15") {
+      fractionPoints++
+    }
+    if (fraction34 == "2/10") {
+      fractionPoints++
+    }
+    if (fraction35 == "5/20") {
+      fractionPoints++
+    }
+    if (this.fractionlistItems[0] == "3/20") {
+      fractionPoints++
+    }
+    if (this.fractionlistItems[1] == "6/20") {
+      fractionPoints++
+    }
+    if (this.fractionlistItems[2] == "12/20") {
+      fractionPoints++
+    }
+    if (this.fractionlistItems[3] == "15/20") {
+      fractionPoints++
+    }
+    if (this.fractionlistItems[4] == "19/20") {
+      fractionPoints++
+    }
+    console.log(this.profilePoints + fractionPoints)
+    firebase.auth().onAuthStateChanged(async user => {
+      var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+      if (this.year3FractionPoints != null) {
+        var tempPoints = this.profilePoints - this.year3FractionPoints
+      }
+      else {
+        var tempPoints = this.profilePoints
+      }
+
+      var newPoints = tempPoints + fractionPoints;
+      console.log(newPoints)
+      userDoc.update({ 'Year3-Fraction': fractionPoints })
+      userDoc.update({ 'points': newPoints });
+      popoverController.dismiss();
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "You scored " + fractionPoints + "/17",
         buttons: [
           {
             text: 'Ok',
