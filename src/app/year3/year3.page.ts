@@ -27,14 +27,17 @@ export class Year3Page implements OnInit {
   additionProgress: number;
   multiplyProgress: number;
   fractionProgress: number;
+  shapeProgress: number;
   year3NumberPoints: number;
   year3AdditionPoints: number;
   year3MultiplyPoints: number;
   year3FractionPoints: number;
+  year3ShapePoints: number;
   number11: string;number12: string;number13: string;number14: string;number15: string;number21: string;number22: string;number23: string;number24: string;number25: string;number41: string;number42: string;number43: string;number44: string;
   fraction11: string;fraction12: string;fraction21: string;fraction22: string;fraction23: string;fraction24: string;fraction25: string;fraction31: string;fraction32: string;fraction33: string;fraction34: string;fraction35: string;
   addition11: string; addition12: string; addition13: string; addition14: string; addition15: string; addition21: string; addition22: string; addition23: string; addition24: string; addition25: string; addition31: string; addition32: string; addition33: string; addition34: string; addition35: string;
   multiply11: string; multiply12: string; multiply13: string; multiply14: string; multiply15: string; multiply21: string; multiply22: string; multiply23: string; multiply24: string; multiply25: string; multiply31: string; multiply32: string; multiply33: string; multiply34: string;
+  shapes11: string; shapes12: string; shapes13: string; shapes21: string; shapes22: string; shapes23: string; shapes31: string; shapes32: string; shapes33: string;
   usersRef = collection(db, "users");
   @ViewChild(SwiperComponent) swiper: SwiperComponent;
   listItems: any;
@@ -81,6 +84,8 @@ export class Year3Page implements OnInit {
           this.multiplyProgress = profile['Year3-Multiply'] / 14
           this.year3FractionPoints = profile['Year3-Fraction']
           this.fractionProgress = profile['Year3-Fraction'] / 17
+          this.year3ShapePoints = profile['Year3-Shape']
+          this.shapeProgress = profile['Year3-Shape'] / 9
         })
       }
     }
@@ -413,6 +418,64 @@ export class Year3Page implements OnInit {
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: "You scored " + fractionPoints + "/17",
+        buttons: [
+          {
+            text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
+    }
+    )
+  }
+  submitShapeAnswers(shapes11: string, shapes12: string, shapes13: string, shapes21: string,shapes22: string, shapes23: string, shapes31: string, shapes32: string, shapes33: string) {
+
+    var shapePoints = 0;
+    if (shapes11 == "cylinder") {
+      shapePoints++
+    }
+    if (shapes12 == "pryamid") {
+      shapePoints++
+    }
+    if (shapes13 == "cuboid") {
+      shapePoints++
+    }
+    if (shapes21 == "acute") {
+      shapePoints++
+    }
+    if (shapes22 == "reflex") {
+      shapePoints++
+    }
+    if (shapes23 == "obtuse") {
+      shapePoints++
+    }
+    if (shapes31 == "parallel") {
+      shapePoints++
+    }
+    if (shapes32 == "perpendicular") {
+      shapePoints++
+    }
+    if (shapes33 == "parallel") {
+      shapePoints++
+    }
+    console.log(this.profilePoints + shapePoints)
+    firebase.auth().onAuthStateChanged(async user => {
+      var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+      if (this.year3ShapePoints != null) {
+        var tempPoints = this.profilePoints - this.year3ShapePoints
+      }
+      else {
+        var tempPoints = this.profilePoints
+      }
+
+      var newPoints = tempPoints + shapePoints;
+      console.log(newPoints)
+      userDoc.update({ 'Year3-Shape': shapePoints })
+      userDoc.update({ 'points': newPoints });
+      popoverController.dismiss();
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "You scored " + shapePoints + "/9",
         buttons: [
           {
             text: 'Ok',

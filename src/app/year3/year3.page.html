@@ -101,7 +101,7 @@
           <div class="progress-label">
             <i>Properties of Shapes</i>
           </div>
-          <ion-progress-bar class="summary-bar" value="1"></ion-progress-bar>
+          <ion-progress-bar class="summary-bar" value={{shapeProgress}}></ion-progress-bar>
         </ion-row>
       </ion-card>
     </ion-col>
@@ -1704,11 +1704,11 @@
                 <ion-col>
                   <ion-row>
                     <div class="progress-value">
-                      <i>2/10 Points</i>
+                      <i>{{year3ShapePoints}}/9 Points</i>
                     </div>
                   </ion-row>
                   <ion-row>
-                    <ion-progress-bar class="card-progress" value="0.2"></ion-progress-bar>
+                    <ion-progress-bar class="card-progress" value={{shapeProgress}}></ion-progress-bar>
                   </ion-row>
                 </ion-col>
               </ion-item>
@@ -1742,12 +1742,298 @@
               </ion-col>
             </ion-row>
             <ion-row class="main-row">
-              <ion-button class="tutorial-button">
+              <ion-button id="year3-shapes" class="tutorial-button">
                 <b>Tutorial</b>
               </ion-button>
-              <ion-button class="quiz-button">
+              <!-- Properties of Shapes Tutorial  -->
+              <ion-popover id="css" trigger="year3-shapes">
+                <ng-template>
+                  <ion-content>
+                    <swiper [pagination]="true">
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>3d Shapes</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-shapes.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Right Angles</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-right-angle.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Angles Sizes</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-acute.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                      <ng-template swiperSlide>
+                        <ion-row class="ion-justify-content-center">
+                          <h1>Parallel and Perpendicular Lines</h1>
+                          <ion-img class="slide-img" src="/assets/images/year3-parallel.png"></ion-img>
+                        </ion-row>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
+              <ion-button id="shapes-quiz"class="quiz-button">
                 <b>Quiz</b>
               </ion-button>
+              <!-- Fractions Quiz -->
+              <ion-popover [backdropDismiss]="false" id="quiz" trigger="shapes-quiz">
+                <ng-template>
+                  <ion-content>
+                    <swiper #slides [pagination]="true" [allowTouchMove]="false">
+                      <!-- Question One -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question One</h1>
+                          <div class="quiz-text">
+                            <b>Select the correct shape</b>
+                          </div>
+                          <div class="quiz-text">
+                            Choose your answer from the dropdown
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/cylinder.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 1</ion-label>
+                                    <ion-select [(ngModel)]="shapes11" interface="popover">
+                                      <ion-select-option value="cube">Cube</ion-select-option>
+                                      <ion-select-option value="cuboid">Cuboid</ion-select-option>
+                                      <ion-select-option value="cylinder">Cylinder</ion-select-option>
+                                      <ion-select-option value="pryamid">Pryamid</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/pryamid.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 2</ion-label>
+                                    <ion-select [(ngModel)]="shapes12" interface="popover">
+                                      <ion-select-option value="cube">Cube</ion-select-option>
+                                      <ion-select-option value="cuboid">Cuboid</ion-select-option>
+                                      <ion-select-option value="cylinder">Cylinder</ion-select-option>
+                                      <ion-select-option value="pryamid">Pryamid</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img class="quiz-img" src="/assets/images/cuboid.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 3</ion-label>
+                                    <ion-select [(ngModel)]="shapes13" interface="popover">
+                                      <ion-select-option value="cube">Cube</ion-select-option>
+                                      <ion-select-option value="cuboid">Cuboid</ion-select-option>
+                                      <ion-select-option value="cylinder">Cylinder</ion-select-option>
+                                      <ion-select-option value="pryamid">Pryamid</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-button (click)="nextSlide()" class="next-button-small-margin">
+                                  Next Question
+                                </ion-button>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Two -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Two</h1>
+                          <div class="quiz-text">
+                            <b>Identify the type of angle</b>
+                          </div>
+                          <div class="quiz-text">
+                            Choose your answer from the dropdown
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/acute.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 1</ion-label>
+                                    <ion-select [(ngModel)]="shapes21" interface="popover">
+                                      <ion-select-option value="obtuse">Obtuse</ion-select-option>
+                                      <ion-select-option value="acute">Acute</ion-select-option>
+                                      <ion-select-option value="right-angle">Right-angle</ion-select-option>
+                                      <ion-select-option value="reflex">Reflex</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/reflex.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 2</ion-label>
+                                    <ion-select [(ngModel)]="shapes22" interface="popover">
+                                      <ion-select-option value="obtuse">Obtuse</ion-select-option>
+                                      <ion-select-option value="acute">Acute</ion-select-option>
+                                      <ion-select-option value="right-angle">Right-angle</ion-select-option>
+                                      <ion-select-option value="reflex">Reflex</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img class="quiz-img" src="/assets/images/obtuse.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 3</ion-label>
+                                    <ion-select [(ngModel)]="shapes23" interface="popover">
+                                      <ion-select-option value="obtuse">Obtuse</ion-select-option>
+                                      <ion-select-option value="acute">Acute</ion-select-option>
+                                      <ion-select-option value="right-angle">Right-angle</ion-select-option>
+                                      <ion-select-option value="reflex">Reflex</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button (click)="nextSlide()" class="next-button">
+                                    Next Question
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                      <!-- Question Three -->
+                      <ng-template swiperSlide>
+                        <ion-card class="quiz-card">
+                          <h1>Question Three</h1>
+                          <div class="quiz-text">
+                            <b>Parellel or Perpendicular Lines</b>
+                          </div>
+                          <div class="quiz-text">
+                            Choose your answer from the dropdown
+                          </div>
+                          <ion-row class="ion-padding-top">
+                            <ion-col size="3">
+                            </ion-col>
+                            <ion-col>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/parallel.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 1</ion-label>
+                                    <ion-select [(ngModel)]="shapes31" interface="popover">
+                                      <ion-select-option value="parallel">Parallel</ion-select-option>
+                                      <ion-select-option value="perpendicular">Perpendicular</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img  class="quiz-img" src="/assets/images/perpendicular.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 2</ion-label>
+                                    <ion-select [(ngModel)]="shapes32" interface="popover">
+                                      <ion-select-option value="parallel">Parallel</ion-select-option>
+                                      <ion-select-option value="perpendicular">Perpendicular</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-padding-top">
+                                <ion-col>
+                                  <ion-row class="ion-justify-content-center">
+                                  <ion-img class="quiz-img" src="/assets/images/parallel2.png"></ion-img>
+                                </ion-row>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-item class="quiz-text">
+                                    <ion-label>Question 3</ion-label>
+                                    <ion-select [(ngModel)]="shapes33" interface="popover">
+                                      <ion-select-option value="parallel">Parallel</ion-select-option>
+                                      <ion-select-option value="perpendicular">Perpendicular</ion-select-option>
+                                    </ion-select>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <ion-row class="ion-justify-content-center">
+                                <ion-col>
+                                  <ion-button (click)="prevSlide()" class="next-button-small-margin">
+                                    Previous Question
+                                  </ion-button>
+                                </ion-col>
+                                <ion-col>
+                                  <ion-button type="submit"
+                                    (click)="submitShapeAnswers(shapes11, shapes12, shapes13, shapes21,shapes22, shapes23, shapes31, shapes32, shapes33)"
+                                    class="next-button-small-margin">
+                                    Submit Answers
+                                  </ion-button>
+                                </ion-col>
+                              </ion-row>
+                            </ion-col>
+                            <ion-col size="3"></ion-col>
+                          </ion-row>
+                        </ion-card>
+                      </ng-template>
+                    </swiper>
+                  </ion-content>
+                </ng-template>
+              </ion-popover>
             </ion-row>
           </ion-card>
         </ion-row>
