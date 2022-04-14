@@ -6,6 +6,8 @@ import { db } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import { deleteUser } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +24,7 @@ export class ProfilePage implements OnInit {
   progress: number;
   usersRef = collection(db,"users");
 
-  constructor(public authService: AuthenticationService, private firestore: AngularFirestore,    public alertController: AlertController) { }
+  constructor(public authService: AuthenticationService, private firestore: AngularFirestore,    public alertController: AlertController,public router: Router,) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -38,9 +40,9 @@ export class ProfilePage implements OnInit {
           console.log("PROFILE::", profile);
           profile['name'] = user.displayName
           this.profilePoints = profile['points']
-          this.level = Math.trunc(this.profilePoints / 50)
-          this.xpNeeded = 50 - Math.trunc(this.profilePoints % 50)
-          this.progress = Math.trunc(this.profilePoints % 50) / 50
+          this.level = Math.trunc(this.profilePoints / 25)
+          this.xpNeeded = 25 - Math.trunc(this.profilePoints % 25)
+          this.progress = Math.trunc(this.profilePoints % 25) / 25
         })
        }
     }
@@ -153,6 +155,35 @@ export class ProfilePage implements OnInit {
         buttons: [
         {
             text: 'Ok',
+          }
+        ]
+      })
+      await alert.present();
+    }
+
+     async deleteAccount(){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "Are you sure you want to delete your account?",
+        buttons: [
+        {
+            text: 'No',
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              console.log('Confirm Delete');
+              firebase.auth().onAuthStateChanged(user => {
+                deleteUser(user).then(() => {
+                  // User deleted.
+                }).catch((error) => {
+                  // An error ocurred
+                  // ...
+                });
+                this.router.navigate(['login'])
+              })
+              
+            }
           }
         ]
       })
