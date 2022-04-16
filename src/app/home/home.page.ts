@@ -3,9 +3,11 @@ import { PopoverController } from '@ionic/angular';
 import { AuthenticationService } from "../shared/authentication-service";
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, DocumentSnapshot, getDoc } from 'firebase/firestore';
 import { db } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from '@firebase/util';
+import { stringify } from 'querystring';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -18,14 +20,20 @@ export class HomePage implements OnInit {
   profilePoints: number;
   photo: string;
   name: string;
+  list: Array<{person: number}>
 
-  constructor(public authService: AuthenticationService, private firestore: AngularFirestore) { }
+  constructor(public authService: AuthenticationService, private firestore: AngularFirestore) { 
+    
+  }
+ 
 
 
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
       this.photo = user.photoURL;
-      this.name = user.displayName
+      this.name = user.displayName;
+      var userScores = this.firestore.collection('users').doc(`scores`);
+      
 
       console.log("AUTH_USER",user)
       console.log(user.displayName)
@@ -37,11 +45,45 @@ export class HomePage implements OnInit {
          console.log("PROFILE::", profile);
          this.profileName = profile['name']
          this.profilePoints = profile['points']
+         var uid = this.name
+         userScores.update({ [uid] : this.profilePoints });
+         document.getElementById('scoreboard').innerHTML = '';
+         this.firestore.collection('users', ref => ref.orderBy('points' ,'desc')).get().toPromise().then((snapshot) => {
+          snapshot.forEach((doc) => {
+            
+              document.getElementById('scoreboard').innerHTML += '<tr>' +
+              '<td >' + '<ion-img style="height:65px; width: 65px; margin-left: auto; margin-right: auto" src=' + doc.data()['img'] +'></ion-img>' + '</td>' +
+              '<td style="text-align: center">' + doc.data()['name'] + '</td>' +
+              '<td style="text-align: center">' + doc.data()['points'] + ' Pts</td>' +
+              '</tr>';
+          })
+      })
+        
+         
+        
+
+
+        
+
+        
        })
-      }
+       
+
+     
+       
+      //  this.list = []
+      // this.list.push(Object.entries((await userScores.get().toPromise()).data()).sort(([,a],[,b]) => b-a))
+    
+       
+      // //  this.list.push(data)
+      //  console.log(data)
+       
+       }
 
       
     })
+    
+  
   }
 
   

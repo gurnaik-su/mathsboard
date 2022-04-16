@@ -148,6 +148,8 @@ export class ProfilePage implements OnInit {
         user.updateProfile({
           photoURL: "/assets/images/redBadge.png"
         })
+        var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/redBadge.png" })
       })
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -196,6 +198,8 @@ export class ProfilePage implements OnInit {
         user.updateProfile({
           photoURL: "/assets/images/blueCircle.png"
         })
+        var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/blueCircle.png" })
       })
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -227,6 +231,9 @@ export class ProfilePage implements OnInit {
       user.updateProfile({
         photoURL: "/assets/images/green1Circle.png"
       })
+      var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/green1Circle.png" })
+      
     })
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -257,6 +264,8 @@ export class ProfilePage implements OnInit {
     user.updateProfile({
       photoURL: "/assets/images/orangeCircle.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/orangeCircle.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
@@ -288,6 +297,8 @@ else{
     user.updateProfile({
       photoURL: "/assets/images/purpcirc.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/purpcirc.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
@@ -319,6 +330,8 @@ else{
     user.updateProfile({
       photoURL: "/assets/images/pinkCircle.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/pinkCircle.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',

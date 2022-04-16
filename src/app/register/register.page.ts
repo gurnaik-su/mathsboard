@@ -54,7 +54,8 @@ export class RegisterPage implements OnInit {
       
        setDoc(doc(this.usersRef,res.user.uid), {
         name: username.value ,
-        points: 0
+        points: 0,
+        img: "/assets/images/redBadge.png"
       }).then(() => {
         console.log("Successful")})
         .catch((error) => {
