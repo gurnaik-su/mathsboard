@@ -80,6 +80,8 @@ export class ProfilePage implements OnInit {
                   user.updateProfile({
                     displayName: data.username
                   })
+                  var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+                   userDoc.update({ 'name': data.username })
                   // this.firestore.collection('users').doc(`/users/${user.uid}`).update({name:data.username});
                   
 

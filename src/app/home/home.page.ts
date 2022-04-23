@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
     firebase.auth().onAuthStateChanged(async user => {
       this.photo = user.photoURL;
       this.name = user.displayName;
-      var userScores = this.firestore.collection('users').doc(`scores`);
+      
       
 
       console.log("AUTH_USER",user)
@@ -45,8 +45,6 @@ export class HomePage implements OnInit {
          console.log("PROFILE::", profile);
          this.profileName = profile['name']
          this.profilePoints = profile['points']
-         var uid = this.name
-         userScores.update({ [uid] : this.profilePoints });
          document.getElementById('scoreboard').innerHTML = '';
          this.firestore.collection('users', ref => ref.orderBy('points' ,'desc')).get().toPromise().then((snapshot) => {
           snapshot.forEach((doc) => {
@@ -58,26 +56,8 @@ export class HomePage implements OnInit {
               '</tr>';
           })
       })
-        
-         
-        
-
-
-        
-
-        
+            
        })
-       
-
-     
-       
-      //  this.list = []
-      // this.list.push(Object.entries((await userScores.get().toPromise()).data()).sort(([,a],[,b]) => b-a))
-    
-       
-      // //  this.list.push(data)
-      //  console.log(data)
-       
        }
 
       
@@ -85,9 +65,5 @@ export class HomePage implements OnInit {
     
   
   }
-
-  
-  
-  
 
 }
