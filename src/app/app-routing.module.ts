@@ -52,7 +52,13 @@ const routes: Routes = [
     path: 'year6',
     loadChildren: () => import('./year6/year6.module').then( m => m.Year6PageModule),
     canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+  {
+    path: 'timestable',
+    loadChildren: () => import('./timestable/timestable.module').then( m => m.TimestablePageModule),
+    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin }
   }
+
 ];
 
 @NgModule({

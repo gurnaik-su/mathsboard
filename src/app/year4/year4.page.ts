@@ -1,15 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import SwiperCore, { Autoplay, Keyboard, Pagination, Scrollbar, Zoom } from 'swiper';
-import { SwiperComponent } from 'swiper/angular';
 import { AuthenticationService } from "../shared/authentication-service";
 import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
-import { db } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
-import { collection, doc, setDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
-import { popoverController } from '@ionic/core';
 @Component({
   selector: 'app-year4',
   templateUrl: './year4.page.html',
@@ -39,6 +34,19 @@ export class Year4Page implements OnInit {
       }
     }
     )
+  }
+
+  async comingSoon(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: "Tutorials and Quiz's coming soon",
+      buttons: [
+        {
+          text: 'Ok',
+        }
+      ]
+    })
+    await alert.present();
   }
 
 }

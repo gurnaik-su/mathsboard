@@ -6,6 +6,8 @@ import { db } from 'src/environments/environment';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AlertController } from '@ionic/angular';
 import { collection, doc, setDoc } from 'firebase/firestore';
+import { deleteUser } from 'firebase/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -22,7 +24,7 @@ export class ProfilePage implements OnInit {
   progress: number;
   usersRef = collection(db,"users");
 
-  constructor(public authService: AuthenticationService, private firestore: AngularFirestore,    public alertController: AlertController) { }
+  constructor(public authService: AuthenticationService, private firestore: AngularFirestore,    public alertController: AlertController,public router: Router,) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(user => {
@@ -38,9 +40,9 @@ export class ProfilePage implements OnInit {
           console.log("PROFILE::", profile);
           profile['name'] = user.displayName
           this.profilePoints = profile['points']
-          this.level = Math.trunc(this.profilePoints / 50)
-          this.xpNeeded = 50 - Math.trunc(this.profilePoints % 50)
-          this.progress = Math.trunc(this.profilePoints % 50) / 50
+          this.level = Math.trunc(this.profilePoints / 25)
+          this.xpNeeded = 25 - Math.trunc(this.profilePoints % 25)
+          this.progress = Math.trunc(this.profilePoints % 25) / 25
         })
        }
     }
@@ -146,6 +148,8 @@ export class ProfilePage implements OnInit {
         user.updateProfile({
           photoURL: "/assets/images/redBadge.png"
         })
+        var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/redBadge.png" })
       })
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -159,12 +163,43 @@ export class ProfilePage implements OnInit {
       await alert.present();
     }
 
+     async deleteAccount(){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: "Are you sure you want to delete your account?",
+        buttons: [
+        {
+            text: 'No',
+          },
+          {
+            text: 'Yes',
+            handler: () => {
+              console.log('Confirm Delete');
+              firebase.auth().onAuthStateChanged(user => {
+                deleteUser(user).then(() => {
+                  // User deleted.
+                }).catch((error) => {
+                  // An error ocurred
+                  // ...
+                });
+                this.router.navigate(['login'])
+              })
+              
+            }
+          }
+        ]
+      })
+      await alert.present();
+    }
+
     async blueBadge(){
       if(this.level >= 2){
       firebase.auth().onAuthStateChanged(user => {
         user.updateProfile({
           photoURL: "/assets/images/blueCircle.png"
         })
+        var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/blueCircle.png" })
       })
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
@@ -196,6 +231,9 @@ export class ProfilePage implements OnInit {
       user.updateProfile({
         photoURL: "/assets/images/green1Circle.png"
       })
+      var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/green1Circle.png" })
+      
     })
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -226,6 +264,8 @@ export class ProfilePage implements OnInit {
     user.updateProfile({
       photoURL: "/assets/images/orangeCircle.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/orangeCircle.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
@@ -257,6 +297,8 @@ else{
     user.updateProfile({
       photoURL: "/assets/images/purpcirc.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/purpcirc.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',
@@ -288,6 +330,8 @@ else{
     user.updateProfile({
       photoURL: "/assets/images/pinkCircle.png"
     })
+    var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
+        userDoc.update({ 'img': "/assets/images/pinkCircle.png" })
   })
   const alert = await this.alertController.create({
     cssClass: 'my-custom-class',

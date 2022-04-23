@@ -11,8 +11,15 @@
 }
 
 .profile-img{
-    width: 80%;
-    height: 80%;
+    width: 80% !important;
+    height: 80%  !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img{
+    width: 30px;
+    height: 30px;
 }
 
 .account-button{
@@ -50,6 +57,31 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size:25px;
     color: #324068;
+}
+.leaderboard-title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size:25px;
+    color: #324068;
+}
+th{
+    font-size: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #324068;
+}
+table{
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #F5A732;
+}
+.table-div{
+    
+        height: 475px;
+        overflow-y: auto;
+    
+}
+td{
+    text-align: center;
 }
 
 .card-subtitle{

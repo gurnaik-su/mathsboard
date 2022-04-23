@@ -162,22 +162,35 @@ export class Year3Page implements OnInit {
       numberPoints++
       numberPoints++
     }
-    if (number41 == "three hundred and eighty-four") {
-      numberPoints++
+    if (number41 != null){
+      if (number41.toLocaleLowerCase() == "three hundred and eighty-four") {
+        numberPoints++
+      }
     }
-    if (number42 == "thirty-nine") {
-      numberPoints++
+    if (number42 != null){
+      if (number42.toLocaleLowerCase() == "thirty-nine") {
+        numberPoints++
+      }
     }
-    if (number43 == "five hundred and eighty-three") {
-      numberPoints++
+    if (number43 != null){
+      if (number43.toLocaleLowerCase() == "five hundred and eighty-three") {
+        numberPoints++
+      }
     }
-    if (number44 == "two hundred and ninety-four") {
-      numberPoints++
+    if (number44 != null){
+      if (number44.toLocaleLowerCase() == "two hundred and ninety-four") {
+        numberPoints++
+      }
     }
     console.log(this.profilePoints + numberPoints)
     firebase.auth().onAuthStateChanged(async user => {
       var userDoc = this.firestore.collection('users').doc(`${user.uid}`);
-      var tempPoints = this.profilePoints - this.year3NumberPoints
+      if (this.year3NumberPoints != null) {
+        var tempPoints = this.profilePoints - this.year3NumberPoints
+      }
+      else {
+        var tempPoints = this.profilePoints
+      }
       var newPoints = tempPoints + numberPoints;
       console.log(newPoints)
       userDoc.update({ 'Year3-Number': numberPoints })
